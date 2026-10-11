@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quiz HTML et CSS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&amp;family=Nunito:wght@400;700&amp;display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a class="evitement" href="#contenu">Aller au contenu</a>
+
+    <main id="contenu">
+        <section id="accueil" class="ecran">
+            <h1>Quiz HTML et CSS</h1>
+            <p class="intro">Huit questions pour tester tes bases du web. Chaque réponse est corrigée tout de suite : vise le 8 sur 8.</p>
+            <ul class="infos">
+                <li>8 questions</li>
+                <li>Une seule bonne réponse</li>
+                <li>Environ 3 minutes</li>
+            </ul>
+            <button id="commencer" class="bouton" type="button">Commencer le quiz</button>
+        </section>
+
+        <section id="quiz" class="ecran" hidden>
+            <div class="haut">
+                <p id="compteur">Question 1 sur 8</p>
+                <p id="score-live">Score : 0</p>
+            </div>
+            <div class="barre" role="progressbar" aria-label="Progression du quiz" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0">
+                <div id="remplissage"></div>
+            </div>
+            <h2 id="question" tabindex="-1">Chargement de la question</h2>
+            <ul id="reponses" class="reponses"></ul>
+            <p id="retour" class="retour" role="status"></p>
+            <button id="suivante" class="bouton" type="button" hidden>Question suivante</button>
+        </section>
+
+        <section id="resultat" class="ecran" hidden>
+            <h2 id="titre-resultat" tabindex="-1">Quiz terminé</h2>
+            <div id="cercle" class="cercle"><span id="score-final"></span></div>
+            <p id="message" class="intro"></p>
+            <button id="rejouer" class="bouton" type="button">Rejouer</button>
+        </section>
+    </main>
+
+    <footer class="pied">
+        <p>Mini-projet web, ISSATSo</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
