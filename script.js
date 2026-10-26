@@ -52,7 +52,6 @@ let repondu = false;
 let minuteur = null;
 let debut = 0;
 
-// ===== Outils =====
 function melanger(tableau) {
     const copie = [...tableau];
     for (let i = copie.length - 1; i > 0; i--) {
