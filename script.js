@@ -1,33 +1,5 @@
 "use strict";
 
-<<<<<<< HEAD
-// Questions : modifie ou ajoute les tiennes ici
-const QUESTIONS = [
-    { q: "Quelle balise HTML5 contient le contenu principal d'une page ?",
-      options: ["<main>", "<content>", "<center>", "<principal>"], bonne: 0,
-      explication: "<main> désigne le contenu principal, utilisé une seule fois par page." },
-    { q: "Quelle déclaration CSS active Flexbox sur un conteneur ?",
-      options: ["display: flex;", "flex: container;", "position: flex;", "layout: flexbox;"], bonne: 0,
-      explication: "display: flex transforme le conteneur en boîte flexible." },
-    { q: "Quelle unité CSS dépend de la taille de police de l'élément racine ?",
-      options: ["px", "rem", "vh", "%"], bonne: 1,
-      explication: "1rem vaut la taille de police de l'élément html." },
-    { q: "Quelle règle applique des styles aux écrans de 600px ou moins ?",
-      options: ["@media (max-width: 600px)", "@screen (small)", "@responsive 600px", "@media (min-width: 600px)"], bonne: 0,
-      explication: "max-width cible les écrans jusqu'à la largeur indiquée." },
-    { q: "Quel attribut décrit une image pour les lecteurs d'écran ?",
-      options: ["title", "src", "alt", "name"], bonne: 2,
-      explication: "L'attribut alt remplace l'image quand elle ne peut pas être vue." },
-    { q: "Quelle déclaration CSS crée une grille ?",
-      options: ["display: table;", "display: grid;", "grid: on;", "layout: grid;"], bonne: 1,
-      explication: "display: grid active la mise en page en grille." },
-    { q: "Quelle méthode JavaScript sélectionne un élément par son id ?",
-      options: ["document.getElementById()", "document.findId()", "window.selectId()", "document.id()"], bonne: 0,
-      explication: "getElementById renvoie l'élément dont l'id correspond." },
-    { q: "Quel outil vérifie que ton code HTML est valide ?",
-      options: ["Le compilateur Java", "Le validateur W3C", "Le terminal Git", "L'inspecteur réseau"], bonne: 1,
-      explication: "Le validateur W3C (validator.w3.org) signale les erreurs de syntaxe." }
-=======
 // ===== Réglages du jeu =====
 const DUREE = 15;          // secondes par question
 const POINTS_MAX = 100;    // points pour une réponse immédiate
@@ -67,7 +39,6 @@ const QUESTIONS = [
     { type: "vf", q: "Vrai ou faux : la balise <div> a un sens sémantique précis.",
       options: ["Vrai", "Faux"], bonne: 1,
       explication: "<div> est un conteneur neutre, contrairement à <main> ou <header>." }
->>>>>>> 6b25e94baddb0dd5fc75eca7257888b95e3690ea
 ];
 
 const $ = (id) => document.getElementById(id);
@@ -76,17 +47,12 @@ const ecrans = { accueil: $("accueil"), quiz: $("quiz"), resultat: $("resultat")
 let questions = [];
 let index = 0;
 let score = 0;
-<<<<<<< HEAD
-let repondu = false;
-
-=======
 let bonnes = 0;
 let repondu = false;
 let minuteur = null;
 let debut = 0;
 
 // ===== Outils =====
->>>>>>> 6b25e94baddb0dd5fc75eca7257888b95e3690ea
 function melanger(tableau) {
     const copie = [...tableau];
     for (let i = copie.length - 1; i > 0; i--) {
@@ -100,12 +66,6 @@ function montrer(nom) {
     Object.entries(ecrans).forEach(([cle, el]) => { el.hidden = cle !== nom; });
 }
 
-<<<<<<< HEAD
-function demarrer() {
-    questions = melanger(QUESTIONS);
-    index = 0;
-    score = 0;
-=======
 // Relance l'animation d'entrée (transition entre les questions)
 function animer() {
     [$("question"), $("reponses")].forEach((el) => {
@@ -192,7 +152,6 @@ function demarrer() {
     score = 0;
     bonnes = 0;
     document.querySelector(".barre").setAttribute("aria-valuemax", String(questions.length));
->>>>>>> 6b25e94baddb0dd5fc75eca7257888b95e3690ea
     montrer("quiz");
     afficherQuestion();
 }
@@ -202,11 +161,7 @@ function afficherQuestion() {
     repondu = false;
 
     $("compteur").textContent = `Question ${index + 1} sur ${questions.length}`;
-<<<<<<< HEAD
-    $("score-live").textContent = `Score : ${score}`;
-=======
     $("score-live").textContent = `Score : ${score} pts`;
->>>>>>> 6b25e94baddb0dd5fc75eca7257888b95e3690ea
     $("remplissage").style.width = `${(index / questions.length) * 100}%`;
     document.querySelector(".barre").setAttribute("aria-valuenow", String(index));
     $("question").textContent = courante.q;
@@ -215,32 +170,6 @@ function afficherQuestion() {
     $("suivante").hidden = true;
     $("suivante").textContent = index === questions.length - 1 ? "Voir mon score" : "Question suivante";
 
-<<<<<<< HEAD
-    const liste = $("reponses");
-    liste.innerHTML = "";
-    melanger(courante.options.map((texte, i) => ({ texte, juste: i === courante.bonne })))
-        .forEach((option) => {
-            const li = document.createElement("li");
-            const bouton = document.createElement("button");
-            bouton.type = "button";
-            bouton.className = "reponse";
-            bouton.textContent = option.texte;
-            bouton.dataset.juste = String(option.juste);
-            bouton.addEventListener("click", () => repondre(bouton, courante));
-            li.appendChild(bouton);
-            liste.appendChild(li);
-        });
-
-    $("question").focus();
-}
-
-function repondre(bouton, courante) {
-    if (repondu) return;
-    repondu = true;
-
-    const juste = bouton.dataset.juste === "true";
-    if (juste) score++;
-=======
     // Vrai/Faux : on garde l'ordre ; QCM : on mélange les choix
     const options = courante.options.map((texte, i) => ({ texte, juste: i === courante.bonne }));
     const affichees = courante.type === "vf" ? options : melanger(options);
@@ -277,22 +206,11 @@ function repondre(bouton, courante) {
     // Score avec pénalité de temps : -5 points par seconde, minimum 25
     const gain = juste ? Math.max(POINTS_MIN, POINTS_MAX - PENALITE * ecoule) : 0;
     if (juste) { score += gain; bonnes++; }
->>>>>>> 6b25e94baddb0dd5fc75eca7257888b95e3690ea
 
     document.querySelectorAll(".reponse").forEach((b) => {
         b.classList.add("verrouille");
         if (b.dataset.juste === "true") b.classList.add("juste");
     });
-<<<<<<< HEAD
-    if (!juste) bouton.classList.add("faux");
-
-    const bonneReponse = courante.options[courante.bonne];
-    $("retour").className = `retour ${juste ? "ok" : "ko"}`;
-    $("retour").textContent = juste
-        ? `Bonne réponse ! ${courante.explication}`
-        : `Raté. La bonne réponse était : ${bonneReponse}. ${courante.explication}`;
-    $("score-live").textContent = `Score : ${score}`;
-=======
     if (!juste && !tempsEcoule) bouton.classList.add("faux");
 
     const bonneReponse = courante.options[courante.bonne];
@@ -304,7 +222,6 @@ function repondre(bouton, courante) {
     $("retour").className = `retour ${juste ? "ok" : "ko"}`;
     $("retour").textContent = message;
     $("score-live").textContent = `Score : ${score} pts`;
->>>>>>> 6b25e94baddb0dd5fc75eca7257888b95e3690ea
     $("suivante").hidden = false;
     $("suivante").focus();
 }
@@ -316,18 +233,6 @@ function suivante() {
 }
 
 function terminer() {
-<<<<<<< HEAD
-    const total = questions.length;
-    const pct = Math.round((score / total) * 100);
-    montrer("resultat");
-    $("score-final").textContent = `${score} / ${total}`;
-    $("cercle").style.setProperty("--pct", `${pct}%`);
-
-    let message = "À retravailler : relis le cours et retente ta chance.";
-    if (pct === 100) message = "Parfait, tu maîtrises les bases du web !";
-    else if (pct >= 75) message = "Très bien, il ne manque presque rien.";
-    else if (pct >= 50) message = "Pas mal, encore un petit effort.";
-=======
     arreterChrono();
     const total = questions.length;
     const maximum = total * POINTS_MAX;
@@ -344,7 +249,6 @@ function terminer() {
     else if (pct >= 70) message = "Très bien, il ne manque presque rien.";
     else if (pct >= 40) message = "Pas mal, encore un petit effort.";
     if (record) message += " Nouveau record !";
->>>>>>> 6b25e94baddb0dd5fc75eca7257888b95e3690ea
     $("message").textContent = message;
     $("titre-resultat").focus();
 }
@@ -352,8 +256,5 @@ function terminer() {
 $("commencer").addEventListener("click", demarrer);
 $("suivante").addEventListener("click", suivante);
 $("rejouer").addEventListener("click", demarrer);
-<<<<<<< HEAD
-=======
 $("effacer").addEventListener("click", () => { ecrireScores([]); afficherScores(); });
 afficherScores();
->>>>>>> 6b25e94baddb0dd5fc75eca7257888b95e3690ea
