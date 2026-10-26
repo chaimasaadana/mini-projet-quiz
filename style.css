@@ -154,3 +154,35 @@ button:focus-visible { outline: 3px solid var(--soleil); outline-offset: 3px; }
     .reponses { grid-template-columns: 1fr; }
     .ecran { border-radius: 18px; }
 }
+
+/* ===== Chronomètre, pseudo, meilleurs scores ===== */
+.haut { flex-wrap: wrap; align-items: center; }
+#chrono { font-family: "Baloo 2", Arial, sans-serif; font-size: 1.2rem; color: var(--violet); }
+
+.chrono-barre { height: 8px; background: var(--violet-clair); border-radius: 999px; overflow: hidden; }
+#chrono-remplissage { height: 100%; width: 100%; background: var(--violet); border-radius: 999px; transition: width .1s linear, background .3s; }
+.chrono-barre.urgent #chrono-remplissage { background: var(--faux); }
+
+.pseudo { display: flex; flex-direction: column; gap: 6px; align-items: center; font-weight: 700; color: var(--discret); }
+.pseudo input {
+    font: 700 1rem "Nunito", Arial, sans-serif; color: var(--encre);
+    padding: 10px 14px; width: min(100%, 260px); text-align: center;
+    border: 3px solid var(--violet-clair); border-radius: 12px; background: var(--carte);
+}
+.pseudo input:focus-visible { outline: 3px solid var(--soleil); outline-offset: 2px; border-color: var(--violet); }
+
+.detail { margin: 0; font-weight: 700; color: var(--discret); }
+
+.bloc-classement { width: 100%; max-width: 420px; text-align: left; }
+.bloc-classement h2 { font-size: 1.2rem; text-align: center; margin-bottom: 10px; }
+.classement { margin: 0; padding: 0 0 0 28px; font-weight: 700; }
+.classement li { padding: 6px 0; border-bottom: 2px solid var(--violet-clair); }
+.classement li span:first-child { margin-right: 12px; }
+.classement li span:last-child { float: right; color: var(--violet); }
+.classement li.vide { list-style: none; margin-left: -28px; text-align: center; color: var(--discret); border: 0; }
+.lien { display: block; margin: 10px auto 0; background: none; border: 0; cursor: pointer; color: var(--discret); font: 700 .9rem "Nunito", Arial, sans-serif; text-decoration: underline; }
+.lien:hover { color: var(--faux); }
+
+/* Transition entre les questions */
+.anim { animation: glisse .35s ease-out; }
+@keyframes glisse { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
